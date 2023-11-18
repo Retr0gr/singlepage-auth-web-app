@@ -1,0 +1,65 @@
+
+$darkColor: #3a4d39;
+$midDarkColor: #4f6f52;
+$midLightColor: #739072;
+$lightColor: #ece3ce;
+
+body {
+    margin: auto;
+
+}
+
+
+.container{
+    margin: auto;
+    background-color: $darkColor;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .profileContainer{
+        background-color: $lightColor;
+        height: 40vh;
+        width: 30vh;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        border-radius: 10px;
+        color: $darkColor;
+
+
+        .profilePic{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            border-bottom: 1px solid $darkColor;
+
+            img{
+                height: 100px;
+                width: 100px;
+                border: 5px solid $darkColor;
+                border-radius: 10px;
+            }
+
+        }
+
+
+        .logoutButton{
+
+            button{
+                background-color: $midLightColor;
+                color: $dark                Color;
+                font-size: 15px;
+                padding: 15px;
+                font-weight: bold;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
