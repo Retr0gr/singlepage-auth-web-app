@@ -13,7 +13,7 @@ function Register() {
 
     const handleRegister = e =>{
         e.preventDefault()
-        axios.post('//localhost:5000/api/v1/auth/register',
+        axios.post('//localhost:5001/api/v1/auth/register',
         {
             name, email, password
         }).then(res => {console.log(res);})
