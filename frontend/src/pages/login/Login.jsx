@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../provider/authProvider";
+import app from "../../utils/app";
 
 function Login() {
 	const { setToken } = useAuth();
@@ -13,18 +14,20 @@ function Login() {
 
 	const postLogin = async (e) => {
 		e.preventDefault();
-		await axios
+		await app
 			.post("//localhost:5001/api/v1/auth/login", {
 				email,
 				password,
 			})
 			.then((res) => {
-				setToken(res.data.token);
-				navigate("/profile");
-				// localStorage.setItem("username", res.data.user.name);
-				// localStorage.setItem("authenticated", true);
+				localStorage.setItem("name", res.data.user.name);
+				localStorage.setItem("role", res.data.user.role);
+				localStorage.setItem("userId", res.data.user.userId);
+				
 			})
 			.catch((err) => console.log(err));
+			navigate("/profile");
+			console.log("redirecting")
 	};
 
 	return (

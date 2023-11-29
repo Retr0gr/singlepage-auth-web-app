@@ -1,10 +1,11 @@
 import axios from "axios";
+import Cookies from 'js-cookie'
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [token, setToken_] = useState(localStorage.getItem("token"));
+    const [token, setToken_] = useState(Cookies.get('token'));
 
     const setToken = (newToken) => {
         setToken_(newToken);
@@ -13,10 +14,8 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (token) {
             axios.defaults.headers.common["Authorization"] = "Bearer " + token
-            localStorage.setItem('token', token)
         } else {
             delete axios.defaults.headers.common["Authorization"]
-            localStorage.removeItem('token')
         }
     }, [token])
 

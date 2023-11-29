@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Cookies from "js-cookie";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Register from "../pages/register/Register";
@@ -6,8 +7,7 @@ import Profile from "../pages/profile/Profile";
 import Login from "../pages/login/Login";
 
 const Routes = () => {
-	const { token } = useAuth();
-
+	const token  = Cookies.get("token");
 	const routesForPublic = [
 		{
 			path: "/register",
@@ -37,10 +37,10 @@ const Routes = () => {
 	];
 
 	const routesForNotAuthenticatedOnly = [
-        {
-            path: "/",
-            element: <div>Home Page</div>
-        },
+		{
+			path: "/",
+			element: <div>Home Page</div>,
+		},
 		{
 			path: "/login",
 			element: <Login />,

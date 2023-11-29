@@ -4,6 +4,7 @@ import {useState} from 'react'
 import './register.scss'
 import Add from "../../assets/addAvatar.png"
 import { Link } from 'react-router-dom'
+import app from "../../utils/app"
 
 function Register() {
 
@@ -13,7 +14,7 @@ function Register() {
 
     const handleRegister = e =>{
         e.preventDefault()
-        axios.post('//localhost:5001/api/v1/auth/register',
+        app.post('//localhost:5001/api/v1/auth/register',
         {
             name, email, password
         }).then(res => {console.log(res);})

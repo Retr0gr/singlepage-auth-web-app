@@ -1,36 +1,49 @@
 import React from "react";
 import "./profile.scss";
-import Pic from "../../assets/test-profile-pic.jpg"
+import Pic from "../../assets/test-profile-pic.jpg";
+import app from "../../utils/app";
 import { useEffect, useState } from "react";
 import { Navigate, redirect } from "react-router-dom";
 
+const Profile = () => {
+	const [user, setUser] = useState({});
 
-function Profile() {
+	const getData = async () => {
+		await app
+			.get("//localhost:5001/api/v1/users/showMe")
+			.then((res) => {
+				console.log(res.data.user);
+				setUser(res.data.user);
+			})
+			.catch((err) => console.log(err));
+	};
+	useEffect(() => {
+		getData();
+	}, []);
 
-  const [authenticated, setAuthenticated] = useState(null);
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('authenticated')
-    if (loggedInUser) {setAuthenticated(loggedInUser)}
-  }, [])
-  if (!authenticated) { return <Navigate replace to="/login"/>}else{
-  return (
-    <div className="container">
-      <div className="profileContainer">
-        <div className="profilePic">
-          <img src={Pic} alt="profilePicture" />
-          <h1>Username</h1>
-        </div>
-        <div className="aboutSection">
-          <h2>Username: </h2>
-          <h2>Email : </h2>
-          <h2>Password: ********</h2>
-        </div>
-        <div className="logoutButton">
-          <button onClick={redirect("login")}>Logout</button>
-        </div>
-      </div>
-    </div>
-  );}
-}
+	const logout = async () => {
+		await app.get("//localhost:5001/api/v1/auth/logout");
+		window.location.reload(false);
+	};
+
+	return (
+		<div className="container">
+			<div className="profileContainer">
+				<div className="profilePic">
+					<img src={Pic} alt="profilePicture" />
+					<h1>Profile</h1>
+				</div>
+				<div className="aboutSection">
+					<h2>Username: {user.name}</h2>
+					<h2>Email : {user.email}</h2>
+					<h2>Role: {user.role}</h2>
+				</div>
+				<div className="logoutButton">
+					<button onClick={logout}>Logout</button>
+				</div>
+			</div>
+		</div>
+	);
+};
 
 export default Profile;
