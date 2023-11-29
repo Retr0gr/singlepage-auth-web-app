@@ -3,7 +3,6 @@ import "./profile.scss";
 import Pic from "../../assets/test-profile-pic.jpg";
 import app from "../../utils/app";
 import { useEffect, useState } from "react";
-import { Navigate, redirect } from "react-router-dom";
 
 const Profile = () => {
 	const [user, setUser] = useState({});
@@ -12,8 +11,8 @@ const Profile = () => {
 		await app
 			.get("//localhost:5001/api/v1/users/showMe")
 			.then((res) => {
-				console.log(res.data.user);
 				setUser(res.data.user);
+				console.log(user);
 			})
 			.catch((err) => console.log(err));
 	};

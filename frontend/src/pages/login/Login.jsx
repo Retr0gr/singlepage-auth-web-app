@@ -20,14 +20,16 @@ function Login() {
 				password,
 			})
 			.then((res) => {
+				console.log(res.data.user);
 				localStorage.setItem("name", res.data.user.name);
 				localStorage.setItem("role", res.data.user.role);
 				localStorage.setItem("userId", res.data.user.userId);
+				localStorage.setItem("email", res.data.user.email);
 				
 			})
 			.catch((err) => console.log(err));
-			navigate("/profile");
-			console.log("redirecting")
+			navigate("../", {replace: true});
+			navigate(0)
 	};
 
 	return (

@@ -5,55 +5,68 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import Register from "../pages/register/Register";
 import Profile from "../pages/profile/Profile";
 import Login from "../pages/login/Login";
+import Admin from "../pages/admin/Admin";
+import Moderator from "../pages/moderator/Moderator";
 
 const Routes = () => {
-	const token  = Cookies.get("token");
-	const routesForPublic = [
-		{
-			path: "/register",
-			element: <Register />,
-		},
-	];
+  const token = Cookies.get("token");
+  const role = localStorage.getItem("role");
+  const routesForPublic = [
+    {
+      path: "/register",
+      element: <Register />,
+    },
+  ];
 
-	const routesForAuthenticatedOnly = [
-		{
-			path: "/",
-			element: <ProtectedRoute />,
-			children: [
-				{
-					path: "/profile",
-					element: <Profile />,
-				},
-				{
-					path: "/moderator",
-					element: <div>Moderator Page</div>,
-				},
-				{
-					path: "/admin",
-					element: <div>Admin Page</div>,
-				},
-			],
-		},
-	];
+  const routesForUserOnly = [
+    {
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: "/",
+          element: <Profile />,
+        },
+        {
+          path: "/moderator",
+          element: <div>Moderator Page</div>,
+        },
+      ],
+    },
+  ];
 
-	const routesForNotAuthenticatedOnly = [
-		{
-			path: "/",
-			element: <div>Home Page</div>,
-		},
-		{
-			path: "/login",
-			element: <Login />,
-		},
-	];
+  const routesForAdminOnly = [
+    {
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [{ path: "/", element: <Admin /> }],
+    },
+  ];
 
-	const router = createBrowserRouter([
-		...routesForPublic,
-		...(!token ? routesForNotAuthenticatedOnly : []),
-		...routesForAuthenticatedOnly,
-	]);
+  const routesForModeratorOnly = [
+    {
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [{ path: "/", element: <Moderator /> }],
+    },
+  ];
 
-	return <RouterProvider router={router} />;
+  const routesForNotAuthenticatedOnly = [
+    {
+      path: "/",
+      element: <Login />,
+    },
+  ];
+
+  const router = createBrowserRouter([
+    ...routesForPublic,
+    ...(!token ? routesForNotAuthenticatedOnly : []),
+    ...(role === "admin" ? routesForAdminOnly : []),
+	...(role === "moderator" ? routesForModeratorOnly : []),
+    ...routesForUserOnly,
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default Routes;
