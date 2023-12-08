@@ -28,7 +28,7 @@ function Register() {
   };
 
   return (
-    <div className="container">
+    <div className="registerContainer">
       <img
         src="https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         alt="#"

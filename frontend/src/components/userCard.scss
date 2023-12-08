@@ -3,14 +3,14 @@ $midDarkColor: #4f6f52;
 $midLightColor: #739072;
 $lightColor: #ece3ce;
 
-.userContainer {
+.userCardContainer {
     margin: 10px;
     background-color: $midLightColor;
     display: flex;
     flex-direction: column;
     align-items:flex-start;
     color: $lightColor;
-    height: 100px;
+    height: 150px;
     width: 400px;
     border-radius: 10px;
     border: 5px solid black;
@@ -19,5 +19,16 @@ $lightColor: #ece3ce;
         margin: 0px 0px 0px 10px;
         margin-left: 10px;
         height: 50px;
+    }
+
+    button {
+        background-color: $midDarkColor;
+        color: $lightColor;
+        font-size: 15px;
+        padding: 15px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
     }
 }

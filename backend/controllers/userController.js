@@ -8,9 +8,17 @@ const {
 } = require("../utils");
 
 const getAllUsers = async (req, res) => {
-  console.log(req.user);
   const users = await User.find({ role: "user" }).select("-password");
   res.status(StatusCodes.OK).json({ users });
+};
+
+const deleteSingleUser = async (req, res) => {
+  console.log(req.params);
+  const user = await User.findByIdAndDelete(req.params.id);
+  if (!user) {
+    throw new CustomError.NotFoundError(`No user with id: ${req.params.id}`);
+  }
+  res.status(StatusCodes.OK).json({ user });
 };
 
 const getSingleUser = async (req, res) => {
@@ -62,6 +70,7 @@ const updateUserPassword = async (req, res) => {
 
 module.exports = {
   getAllUsers,
+  deleteSingleUser,
   getSingleUser,
   showCUrrentUser,
   updateUser,

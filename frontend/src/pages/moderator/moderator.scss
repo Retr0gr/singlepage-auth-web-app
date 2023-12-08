@@ -31,8 +31,11 @@ $lightColor: #ece3ce;
 		}
 	}
 
-	.userCards {
+	.bottomContainer{
 		display: flex;
-		gap: 10px;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		align-content: flex-start;
 	}
+
 }

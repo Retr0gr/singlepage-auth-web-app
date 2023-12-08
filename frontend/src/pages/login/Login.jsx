@@ -1,13 +1,10 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../provider/authProvider";
 import app from "../../utils/app";
 
 function Login() {
-	const { setToken } = useAuth();
 	const navigate = useNavigate();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
@@ -20,7 +17,6 @@ function Login() {
 				password,
 			})
 			.then((res) => {
-				console.log(res.data.user);
 				localStorage.setItem("name", res.data.user.name);
 				localStorage.setItem("role", res.data.user.role);
 				localStorage.setItem("userId", res.data.user.userId);
@@ -33,7 +29,7 @@ function Login() {
 	};
 
 	return (
-		<div className="container">
+		<div className="loginContainer">
 			<div className="formContainer">
 				<span className="logo">Privacy Pulse</span>
 				<p className="description">
