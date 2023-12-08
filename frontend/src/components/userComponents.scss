@@ -1,0 +1,23 @@
+$darkColor: #3a4d39;
+$midDarkColor: #4f6f52;
+$midLightColor: #739072;
+$lightColor: #ece3ce;
+
+.userContainer {
+	margin: auto;
+    background-color: $midLightColor;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    color: $lightColor;
+    height: 100px;
+    width: 300px;
+    border-radius: 10px;
+    border: 5px solid black;
+    gap: 1px;
+    h2 {
+        margin: 0px 0px 0px 10px;
+        margin-left: 10px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,38 @@
+$darkColor: #3a4d39;
+$midDarkColor: #4f6f52;
+$midLightColor: #739072;
+$lightColor: #ece3ce;
+
+.container {
+	margin: auto;
+	background-color: $darkColor;
+	display: flex;
+	flex-direction: column;
+	.topContainer {
+		display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+		h1 {
+			color: $lightColor;
+			font-size: 5em;
+		}
+		button {
+            height: 50px;
+			background-color: $midLightColor;
+			color: $darkColor;
+			font-size: 15px;
+			padding: 15px;
+			font-weight: bold;
+		    border: 5px solid black;
+			border-radius: 10px;
+			cursor: pointer;
+
+		}
+	}
+
+	.userCards {
+		display: flex;
+		gap: 10px;
+	}
+}
